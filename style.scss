@@ -1,0 +1,223 @@
+* {
+  transition: revert;
+}
+
+:root {
+  --accent-colour: lime;
+  --color: red;
+}
+
+#items {
+  display: flex;
+  flex-direction: column;
+  // gap: 20px;
+
+  > div {
+    display: flex;
+    gap: 10px;
+    padding: 0 0 0 50px;
+    min-height: 3rem;
+    border-radius: 0;
+    cursor: move;
+    // pointer-events: none;
+    pointer-events: auto;
+    position: relative;
+    &:first-child[data-level="1"] {
+      > span {
+        pointer-events: none;
+        &:after {
+          display: none;
+        }
+      }
+    }
+    &:before {
+      font-family: "Font Awesome 6 Free";
+      font-weight: 600;
+      content: "\f07d"; // up-down arrows
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      text-shadow: -1px -1px black, -1px 0 black, -1px 1px black, 0 -1px black,
+        0 1px black, 1px -1px black, 1px 0 black, 1px 1px black;
+    }
+    &:hover > span:before {
+      --wiggle-size: 0.2em;
+      animation: wiggle-vertically 5 forwards 0.2s, wiggle-to-rest forwards 0.5s;
+      color: lime;
+    }
+
+    > span {
+      &:hover:before {
+        animation: none;
+        color: revert;
+      }
+      flex: 1;
+      background: black;
+      color: white;
+      border-radius: 0;
+      padding: 10px;
+      pointer-events: auto;
+      position: relative;
+      min-width: 10ch;
+      &:not(:empty) {
+        &:not(:first-child) {
+          border-left: 15px solid var(--color);
+        }
+        &:before {
+          font-family: "Font Awesome 6 Free";
+          font-weight: 600;
+          content: "\f07d"; // up-down arrows
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          height: 100%;
+          top: 0;
+          left: -50px;
+          pointer-events: none;
+          text-shadow: -1px -1px black, -1px 0 black, -1px 1px black,
+            0 -1px black, 0 1px black, 1px -1px black, 1px 0 black,
+            1px 1px black;
+        }
+        &:after {
+          font-family: "Font Awesome 6 Free";
+          font-weight: 600;
+          content: "\f07e"; // left-right arrows
+          position: absolute;
+          left: calc(50% - 0.5rem);
+          top: -0.25rem;
+        }
+        &:hover:after {
+          --wiggle-size: 0.2em;
+          animation: wiggle-horizontally 5 forwards 0.2s,
+            wiggle-to-rest forwards 0.5s;
+          color: lime;
+        }
+      }
+      &:empty {
+        opacity: 0;
+        cursor: default;
+        background: black;
+        // pointer-events: none; <-- this breaks dragging
+      }
+    }
+  }
+}
+
+#items_output {
+  background: white;
+  color: black;
+  overflow: auto;
+  min-width: 40vw;
+  min-height: 10vh;
+}
+
+[data-level] {
+  background: var(--color);
+  &[style*="--override-color"] {
+    background: var(--override-color);
+  }
+}
+
+@keyframes wiggle-horizontally {
+  0% {
+    transform: translateX(calc(-1 * var(--wiggle-size)));
+  }
+  50% {
+    transform: translateX(var(--wiggle-size));
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--wiggle-size)));
+  }
+}
+
+@keyframes wiggle-vertically {
+  0% {
+    transform: translateY(calc(-1 * var(--wiggle-size)));
+  }
+  50% {
+    transform: translateY(var(--wiggle-size));
+  }
+  100% {
+    transform: translateY(calc(-1 * var(--wiggle-size)));
+  }
+}
+
+@keyframes wiggle-to-rest {
+  100% {
+    transform: translate(0);
+  }
+}
+
+/////////////////////////////////////
+
+// NON-ESSENIAL STYLES FOLLOW:
+
+html,
+body {
+  width: 100%;
+}
+
+p {
+  margin: 3px;
+}
+
+small {
+  font-size: xx-small; // just for demo
+}
+
+code {
+  color: lime;
+  background: black;
+}
+
+.side-by-side {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  margin: 2rem 0;
+  justify-content: space-between;
+
+  > *:first-child {
+    flex: 3;
+  }
+
+  > *:nth-child(2) {
+    flex: 2;
+  }
+}
+
+#output {
+  background: lightgrey;
+  color: black;
+  margin: 2rem 0;
+  padding: 10px;
+  font-size: 0.6rem;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.ui-dialog {
+  background: black;
+  padding: 1em;
+  border-radius: 1em;
+  position: fixed !important;
+  top: 50vh !important;
+
+  .ui-dialog-buttonset {
+    display: flex;
+    gap: 1em;
+  }
+}
+
+.temporary-modal {
+  background: black;
+  color: white;
+}

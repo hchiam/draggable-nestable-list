@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/hchiam/css-boilerplate@6.1.0/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.scss" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-simulate/1.1.1/jquery.simulate.min.js"></script>
+  </head>
+  <body>
+    <div class="side-by-side">
+      <div>
+        <p>Drag rows up/down, drag items left/right:</p>
+        <div id="items">
+          <div data-level="1" style="--color: maroon">
+            <span>can't nest 1st row</span>
+            <span></span>
+            <span></span>
+          </div>
+          <div data-level="1" style="--color: teal">
+            <span>left/right to nest</span>
+            <span></span>
+            <span></span>
+          </div>
+          <div data-level="1" style="--color: navy">
+            <span>up/down to order</span>
+            <span></span>
+            <span></span>
+          </div>
+          <div data-level="1" style="--color: red">
+            <span>Apple</span>
+            <span></span>
+            <span></span>
+          </div>
+          <div data-level="1" style="--color: yellow">
+            <span>Banana</span>
+            <span></span>
+            <span></span>
+          </div>
+          <div data-level="1" style="--color: beige">
+            <span>Coconut</span>
+            <span></span>
+            <span></span>
+          </div>
+          <div data-level="1" style="--color: green">
+            <span>Durian</span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p>Output data:</p>
+        <pre id="items_output"></pre>
+      </div>
+    </div>
+
+    <br />
+
+    <p>
+      Compare with this ACTUAL nesting one:
+      <a
+        href="https://codepen.io/hchiam/pen/NWwVVWX"
+        target="_blank"
+        rel="noopener noreferrer"
+        >https://codepen.io/hchiam/pen/NWwVVWX</a
+      >
+    </p>
+    <p>
+      Or compare with ANOTHER actual nesting one:
+      <a
+        href="https://codepen.io/hchiam/pen/KKybmKd"
+        target="_blank"
+        rel="noopener noreferrer"
+        >https://codepen.io/hchiam/pen/KKybmKd</a
+      >
+    </p>
+    <script src="script.js"></script>
+  </body>
+</html>
